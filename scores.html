@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src="https://code.angularjs.org/1.2.16/angular.js"></script>
+    <script src="scores.js"></script>
+  </head>
+  <body ng-app='Scores'>
+    <div ng-controller='ScoresController'>
+      <ul>
+        <li><button ng-click='filter = "votes"'>By Score</button></li>
+        <li><button ng-click='filter = "name"'>By Name</button></li>
+      </ul>
+      <form novalidate name='newScore'>
+        <input type='text' placeholder='Type your name' ng-model='newScore.name' />
+        <input type='submit' ng-click='add(newScore)'></button>
+      </form>
+      <ul>
+        <li ng-repeat='score in scores | orderBy:filter'>
+          <div>{{ score.name }} ({{ score.votes || 0 }} votes)</div>
+          <div>
+            <a href='' ng-click='upVote(score)'>Up</a>
+            <a href='' ng-click='downVote(score)'>Down</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
